@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Hong Kong Itinerary • Dec 26–31, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --card-border: #e2e8f0;
+      --card-hover: #f1f5f9;
+      --text-main: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+      --primary-gradient: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%);
+      --accent-coral: #e11d48;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.07);
+      --shadow-lg: 0 12px 28px -4px rgba(0, 0, 0, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #ffffff;
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 12px;
+      line-height: 1.45;
+    }
+
+    /* Outer Wrapper limited to mobile/compact screen size for screenshot elegance */
+    .app-container {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* Top Header Card */
+    .header-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--primary-gradient);
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .title-group h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-main);
+    }
+
+    .trip-dates {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    .quick-badges {
+      display: flex;
+      gap: 6px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .badge-chip {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      color: var(--text-secondary);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .badge-chip.highlight {
+      background: #e0f2fe;
+      border-color: #bae6fd;
+      color: #0369a1;
+    }
+
+    /* Action bar */
+    .action-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .btn {
+      font-family: inherit;
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 7px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.18s ease;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    }
+
+    .btn:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+      color: var(--text-main);
+    }
+
+    .btn-primary {
+      background: var(--primary-gradient);
+      border: none;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(2, 132, 199, 0.28);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.06);
+      transform: translateY(-1px);
+      color: #ffffff;
+    }
+
+    /* Day Selector Tabs (Horizontal Swipe on Mobile) */
+    .day-selector-container {
+      position: relative;
+    }
+
+    .day-tabs {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .day-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .day-tab {
+      flex: 0 0 calc((100% - 30px) / 6);
+      min-width: 58px;
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      padding: 8px 4px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .day-tab .weekday {
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+    }
+
+    .day-tab .day-num {
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--text-main);
+    }
+
+    .day-tab .day-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: transparent;
+      margin-top: 2px;
+    }
+
+    .day-tab.active {
+      background: #eff6ff;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 1px #3b82f6, 0 3px 8px rgba(59, 130, 246, 0.18);
+      transform: translateY(-2px);
+    }
+
+    .day-tab.active .weekday {
+      color: #2563eb;
+    }
+
+    .day-tab.active .day-num {
+      color: #1d4ed8;
+    }
+
+    .day-tab.active .day-dot {
+      background: #2563eb;
+    }
+
+    .view-switch {
+      display: flex;
+      background: #f1f5f9;
+      border-radius: var(--radius-sm);
+      padding: 2px;
+      border: 1px solid #e2e8f0;
+      margin-left: auto;
+    }
+
+    .view-btn {
+      padding: 5px 10px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .view-btn.active {
+      background: #ffffff;
+      color: var(--text-main);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+
+    /* Main Content Area */
+    .content-area {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Day Focus Card (Screenshot Optimized) */
+    .day-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+
+    .day-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed #cbd5e1;
+      margin-bottom: 12px;
+    }
+
+    .day-headline h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .day-headline p {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .highlight-pill {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #fff1f2;
+      border: 1px solid #fecdd3;
+      color: #e11d48;
+      white-space: nowrap;
+    }
+
+    /* Timeline Items */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      position: relative;
+    }
+
+    .timeline-item {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-md);
+      padding: 11px 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      position: relative;
+      transition: all 0.15s ease;
+    }
+
+    .timeline-item:hover {
+      background: #ffffff;
+      border-color: #cbd5e1;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .item-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .time-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      font-family: 'Space Grotesk', monospace;
+      color: #0284c7;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .category-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 3px 7px;
+      border-radius: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .cat-flight { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
+    .cat-hotel  { background: #f3e8ff; color: #7e22ce; border: 1px solid #e9d5ff; }
+    .cat-park   { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+    .cat-event  { background: #ffe4e6; color: #be123c; border: 1px solid #fecdd3; }
+    .cat-visit  { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
+    .cat-food   { background: #ffedd5; color: #c2410c; border: 1px solid #fed7aa; }
+
+    .item-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .item-location {
+      font-size: 0.72rem;
+      color: #475569;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 500;
+    }
+
+    .item-desc {
+      font-size: 0.74rem;
+      color: #334155;
+      margin-top: 2px;
+      background: #ffffff;
+      padding: 6px 8px;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+      border-left: 3px solid #0284c7;
+    }
+
+    .item-actions {
+      display: flex;
+      gap: 4px;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+
+    .timeline-item:hover .item-actions,
+    .item-actions:focus-within {
+      opacity: 1;
+    }
+
+    .icon-btn {
+      background: transparent;
+      border: none;
+      color: #64748b;
+      cursor: pointer;
+      font-size: 0.8rem;
+      padding: 3px 6px;
+      border-radius: 4px;
+    }
+
+    .icon-btn:hover {
+      color: var(--text-main);
+      background: #e2e8f0;
+    }
+
+    .icon-btn.delete:hover {
+      color: #dc2626;
+      background: #fee2e2;
+    }
+
+    /* All Days Overview Summary View (Compact 1-page snapshot) */
+    .summary-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .summary-day-row {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      padding: 11px 14px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .summary-day-row:hover {
+      background: #f8fafc;
+      border-color: #38bdf8;
+      box-shadow: var(--shadow-sm);
+      transform: translateX(2px);
+    }
+
+    .row-date-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 48px;
+      height: 46px;
+      background: #f1f5f9;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .row-date-badge .day-name {
+      font-size: 0.62rem;
+      font-weight: 700;
+      color: #0284c7;
+      text-transform: uppercase;
+    }
+
+    .row-date-badge .day-val {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1;
+    }
+
+    .row-details {
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .row-main-tag {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .row-items-preview {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top: 2px;
+    }
+
+    .row-arrow {
+      color: #94a3b8;
+      font-size: 0.85rem;
+      font-weight: bold;
+    }
+
+    /* Add Event Button inside card */
+    .add-event-dashed {
+      border: 1px dashed #94a3b8;
+      border-radius: var(--radius-md);
+      padding: 9px;
+      text-align: center;
+      background: #ffffff;
+      color: #475569;
+      font-size: 0.74rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+      margin-top: 4px;
+    }
+
+    .add-event-dashed:hover {
+      border-color: #0284c7;
+      color: #0284c7;
+      background: #f0f9ff;
+    }
+
+    /* Modal Sheet for Edit / Add */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 420px;
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(12px) scale(0.97);
+      transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .modal-overlay.open .modal-box {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .modal-header h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 12px;
+    }
+
+    .form-group label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 8px 11px;
+      border-radius: 8px;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 0.82rem;
+      outline: none;
+      transition: all 0.15s;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: #0284c7;
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.12);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    /* Screenshot Footer Note */
+    .screenshot-footer {
+      text-align: center;
+      font-size: 0.7rem;
+      color: #94a3b8;
+      padding: 6px;
+    }
+
+    /* Print / Screenshot Styling */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+      }
+      .day-card, .header-card {
+        background: #ffffff !important;
+        border: 1px solid #cbd5e1 !important;
+        box-shadow: none !important;
+        color: #000000 !important;
+      }
+      .btn, .icon-btn, .add-event-dashed, .view-switch {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="app-container">
+  
+  <!-- Header Card -->
+  <div class="header-card">
+    <div class="header-top">
+      <div class="title-group">
+        <h1>🇭🇰 Hong Kong Trip</h1>
+        <div class="trip-dates">26 Dec 2026 – 31 Dec 2026 • 6 Days / 5 Nights</div>
+      </div>
+      <div class="view-switch">
+        <button class="view-btn" id="btn-view-summary" onclick="switchView('summary')">Summary</button>
+        <button class="view-btn active" id="btn-view-day" onclick="switchView('day')">Day Plan</button>
+      </div>
+    </div>
+
+    <div class="quick-badges">
+      <span class="badge-chip highlight">✈️ CX 660 / CX 663</span>
+      <span class="badge-chip">🏨 JW Marriott Admiralty</span>
+      <span class="badge-chip">👨‍👩‍👧‍👦 4 Guests (2 Adults, 2 Kids)</span>
+    </div>
+
+    <div class="action-row">
+      <button class="btn btn-primary" onclick="openAddModal()">
+        <span>+ Add Event</span>
+      </button>
+      <button class="btn" onclick="takeSnapshot()">
+        <span>📸 Screenshot Mode</span>
+      </button>
+      <button class="btn" onclick="resetToDefault()" title="Reset to original itinerary">
+        <span>↺ Reset</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Day Selector (Pill tabs) -->
+  <div class="day-selector-container" id="day-selector-wrapper">
+    <div class="day-tabs" id="day-tabs">
+      <!-- Generated via JS -->
+    </div>
+  </div>
+
+  <!-- Dynamic Content Area -->
+  <div class="content-area" id="main-content">
+    <!-- Day View or Summary View rendered here -->
+  </div>
+
+  <div class="screenshot-footer">
+    💡 Tip: Select any day to view & screenshot its clean light-mode card.
+  </div>
+
+</div>
+
+<!-- Edit / Add Event Modal -->
+<div class="modal-overlay" id="event-modal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 id="modal-title">Edit Itinerary Entry</h3>
+      <button class="icon-btn" onclick="closeModal()" style="font-size:1.2rem">&times;</button>
+    </div>
+    
+    <input type="hidden" id="modal-item-id">
+    
+    <div class="form-row">
+      <div class="form-group">
+        <label>Day / Date</label>
+        <select class="form-select" id="modal-day">
+          <option value="0">Sat, 26 Dec (Arrival & Tram)</option>
+          <option value="1">Sun, 27 Dec (Ocean Park)</option>
+          <option value="2">Mon, 28 Dec (Anish's Event)</option>
+          <option value="3">Tue, 29 Dec (Disneyland)</option>
+          <option value="4">Wed, 30 Dec (Dojakh Event)</option>
+          <option value="5">Thu, 31 Dec (Departure)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Time Window</label>
+        <input type="text" class="form-input" id="modal-time" placeholder="e.g. 10:00 AM - 6:00 PM">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Category</label>
+        <select class="form-select" id="modal-category">
+          <option value="cat-park">Theme Park 🎢</option>
+          <option value="cat-event">Club / Evening Event 🍸</option>
+          <option value="cat-visit">Sightseeing / Activity 🚊</option>
+          <option value="cat-flight">Flight ✈️</option>
+          <option value="cat-hotel">Hotel / Check-in 🏨</option>
+          <option value="cat-food">Dining / Food 🍽️</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Location</label>
+        <input type="text" class="form-input" id="modal-location" placeholder="e.g. Lantau Island">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Activity Title</label>
+      <input type="text" class="form-input" id="modal-activity" placeholder="e.g. Hong Kong Disneyland">
+    </div>
+
+    <div class="form-group">
+      <label>Notes / Booking Details</label>
+      <textarea class="form-textarea" id="modal-notes" rows="2" placeholder="e.g. Tickets confirmed, shuttle info, etc."></textarea>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveEvent()">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Initial default trip data
+  const DEFAULT_DAYS = [
+    {
+      id: "day-26",
+      dateStr: "Sat, 26 Dec",
+      shortDay: "Sat",
+      dayNum: "26",
+      badge: "Arrival & The Peak",
+      summary: "Flight Arrival • JW Marriott Check-in • Peak Tram",
+      items: [
+        {
+          id: "it-26-1",
+          time: "02:00 - 09:55",
+          cat: "cat-flight",
+          catName: "Flight",
+          title: "CX 660 BOM → HKG",
+          location: "BOM T2 → HKG T1",
+          notes: "Cathay Pacific PNR: 5JAQQX. Boeing 777-300ER. Arrival at HKG T1 9:55 AM."
+        },
+        {
+          id: "it-26-2",
+          time: "11:30 AM",
+          cat: "cat-hotel",
+          catName: "Hotel",
+          title: "Check-in at JW Marriott Hotel",
+          location: "Pacific Place, Admiralty",
+          notes: "Booking Ref: 1488586. Includes daily breakfast for 2 + USD 100 hotel credit."
+        },
+        {
+          id: "it-26-3",
+          time: "3:30 PM - 7:30 PM",
+          cat: "cat-visit",
+          catName: "Sightseeing",
+          title: "The Peak Tram Ride & Sky Terrace",
+          location: "Central / Victoria Peak",
+          notes: "Iconic historic funicular tram to Victoria Peak for panoramic sunset skyline views."
+        },
+        {
+          id: "it-26-4",
+          time: "8:00 PM",
+          cat: "cat-food",
+          catName: "Dining",
+          title: "Welcome Family Dinner",
+          location: "Pacific Place / Admiralty",
+          notes: "Relaxed dinner near hotel after first day of travel."
+        }
+      ]
+    },
+    {
+      id: "day-27",
+      dateStr: "Sun, 27 Dec",
+      shortDay: "Sun",
+      dayNum: "27",
+      badge: "Ocean Park Day 🐬",
+      summary: "Ocean Park (10 AM to Closing) • Southside Exploration",
+      items: [
+        {
+          id: "it-27-1",
+          time: "08:30 AM - 09:30 AM",
+          cat: "cat-food",
+          catName: "Breakfast",
+          title: "Breakfast at JW Marriott",
+          location: "JW Café",
+          notes: "Included hotel breakfast before departure."
+        },
+        {
+          id: "it-27-2",
+          time: "10:00 AM - Closing (~6:30 PM)",
+          cat: "cat-park",
+          catName: "Theme Park",
+          title: "Visit to Ocean Park Hong Kong",
+          location: "Wong Chuk Hang / Aberdeen",
+          notes: "Full day from 10:00 AM to closing: Giant Panda Habitat, Grand Aquarium, Cable Car over the mountain, marine exhibits & kids rides."
+        },
+        {
+          id: "it-27-3",
+          time: "7:30 PM",
+          cat: "cat-food",
+          catName: "Dinner",
+          title: "Dinner at Causeway Bay or Hotel",
+          location: "Causeway Bay / Times Square",
+          notes: "Casual family dining."
+        }
+      ]
+    },
+    {
+      id: "day-28",
+      dateStr: "Mon, 28 Dec",
+      shortDay: "Mon",
+      dayNum: "28",
+      badge: "Anish's Event 🍸",
+      summary: "City Leisure • Anish's Club Event (6 PM - 10 PM)",
+      items: [
+        {
+          id: "it-28-1",
+          time: "Morning & Afternoon",
+          cat: "cat-visit",
+          catName: "Sightseeing",
+          title: "Star Ferry & Tsim Sha Tsui Promenade",
+          location: "Victoria Harbour & K11 Musea",
+          notes: "Hop on the classic Star Ferry across the harbour; visit Avenue of Stars & K11."
+        },
+        {
+          id: "it-28-2",
+          time: "6:00 PM - 10:00 PM",
+          cat: "cat-event",
+          catName: "Club Event",
+          title: "Anish's Club Event",
+          location: "Hong Kong Club / Designated Venue",
+          notes: "Evening gathering with Anish (6:00 PM to 10:00 PM). Dress code smart casual."
+        }
+      ]
+    },
+    {
+      id: "day-29",
+      dateStr: "Tue, 29 Dec",
+      shortDay: "Tue",
+      dayNum: "29",
+      badge: "Disneyland Day 🏰",
+      summary: "Hong Kong Disneyland (9 AM to Closing)",
+      items: [
+        {
+          id: "it-29-1",
+          time: "08:15 AM",
+          cat: "cat-visit",
+          catName: "Transport",
+          title: "MTR / Taxi to Disneyland",
+          location: "Admiralty MTR → Sunny Bay → Disney Resort Line",
+          notes: "Kids love the Disney themed train with Mickey windows."
+        },
+        {
+          id: "it-29-2",
+          time: "9:00 AM - Closing (~9:00 PM)",
+          cat: "cat-park",
+          catName: "Theme Park",
+          title: "Visit to Hong Kong Disneyland",
+          location: "Penny's Bay, Lantau Island",
+          notes: "Full day from opening 9:00 AM to park closing: World of Frozen, Mystic Manor, Iron Man Experience, Castle Stage Show & Nighttime Fireworks Spectacular ('Momentous')."
+        }
+      ]
+    },
+    {
+      id: "day-30",
+      dateStr: "Wed, 30 Dec",
+      shortDay: "Wed",
+      dayNum: "30",
+      badge: "Dojakh Event 🔥",
+      summary: "City Discovery • Dojakh Event (7 PM)",
+      items: [
+        {
+          id: "it-30-1",
+          time: "10:30 AM - 3:00 PM",
+          cat: "cat-visit",
+          catName: "Activity",
+          title: "Central Mid-Levels & PMQ Arts District",
+          location: "SoHo / Central",
+          notes: "Stroll the world's longest outdoor covered escalator system, boutique shopping & cafés."
+        },
+        {
+          id: "it-30-2",
+          time: "4:00 PM - 5:30 PM",
+          cat: "cat-hotel",
+          catName: "Leisure",
+          title: "Rest & Prep at JW Marriott",
+          location: "Admiralty",
+          notes: "Utilize USD 100 hotel credit or relax before evening celebration."
+        },
+        {
+          id: "it-30-3",
+          time: "7:00 PM Onwards",
+          cat: "cat-event",
+          catName: "Event",
+          title: "Dojakh Event",
+          location: "Designated Event Venue, Hong Kong",
+          notes: "Special evening celebration starting at 7:00 PM."
+        }
+      ]
+    },
+    {
+      id: "day-31",
+      dateStr: "Thu, 31 Dec",
+      shortDay: "Thu",
+      dayNum: "31",
+      badge: "Departure ✈️",
+      summary: "Hotel Checkout • Shopping • CX 663 Business Class",
+      items: [
+        {
+          id: "it-31-1",
+          time: "11:30 AM",
+          cat: "cat-hotel",
+          catName: "Checkout",
+          title: "Late Check-out at JW Marriott",
+          location: "Admiralty",
+          notes: "Benefit granted via Mastercard Travel. Bell desk luggage storage."
+        },
+        {
+          id: "it-31-2",
+          time: "1:00 PM - 4:30 PM",
+          cat: "cat-visit",
+          catName: "Shopping",
+          title: "Last-Minute Shopping & High Tea",
+          location: "Pacific Place / Causeway Bay",
+          notes: "Souvenirs and relaxation."
+        },
+        {
+          id: "it-31-3",
+          time: "5:30 PM",
+          cat: "cat-flight",
+          catName: "Transport",
+          title: "Airport Express to HKG Airport",
+          location: "Hong Kong Station → HKG Terminal 1",
+          notes: "Relax in Cathay Pacific Business Lounge (The Pier / The Wing)."
+        },
+        {
+          id: "it-31-4",
+          time: "20:10 - 00:40 (+1)",
+          cat: "cat-flight",
+          catName: "Flight",
+          title: "CX 663 HKG → BOM",
+          location: "HKG T1 → BOM T2",
+          notes: "Business Class (U). Full lie-flat seating, dinner onboard. Arrives Mumbai 00:40 on 1st Jan 2027!"
+        }
+      ]
+    }
+  ];
+
+  // State management
+  const STORAGE_KEY = 'hk_trip_itinerary_light_v1';
+  let tripData = [];
+  let currentDayIndex = 0;
+  let currentView = 'day'; // 'day' or 'summary'
+  let editTargetId = null;
+
+  function loadData() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        tripData = JSON.parse(saved);
+      } else {
+        tripData = JSON.parse(JSON.stringify(DEFAULT_DAYS));
+      }
+    } catch (e) {
+      tripData = JSON.parse(JSON.stringify(DEFAULT_DAYS));
+    }
+  }
+
+  function saveData() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(tripData));
+  }
+
+  function resetToDefault() {
+    if (confirm("Reset itinerary back to the default schedule?")) {
+      tripData = JSON.parse(JSON.stringify(DEFAULT_DAYS));
+      saveData();
+      renderAll();
+    }
+  }
+
+  function switchView(view) {
+    currentView = view;
+    document.getElementById('btn-view-summary').classList.toggle('active', view === 'summary');
+    document.getElementById('btn-view-day').classList.toggle('active', view === 'day');
+    
+    // Day tabs only visible in day view
+    document.getElementById('day-selector-wrapper').style.display = view === 'day' ? 'block' : 'none';
+    
+    renderContent();
+  }
+
+  function selectDay(index) {
+    currentDayIndex = index;
+    currentView = 'day';
+    switchView('day');
+    renderTabs();
+    renderContent();
+  }
+
+  function renderTabs() {
+    const tabsContainer = document.getElementById('day-tabs');
+    tabsContainer.innerHTML = tripData.map((d, idx) => `
+      <div class="day-tab ${idx === currentDayIndex ? 'active' : ''}" onclick="selectDay(${idx})">
+        <span class="weekday">${d.shortDay}</span>
+        <span class="day-num">${d.dayNum}</span>
+        <span class="day-dot"></span>
+      </div>
+    `).join('');
+  }
+
+  function renderContent() {
+    const container = document.getElementById('main-content');
+    if (currentView === 'summary') {
+      renderSummaryView(container);
+    } else {
+      renderDayView(container);
+    }
+  }
+
+  function renderDayView(container) {
+    const day = tripData[currentDayIndex];
+    if (!day) return;
+
+    let itemsHtml = day.items.map(it => `
+      <div class="timeline-item" id="${it.id}">
+        <div class="item-top">
+          <span class="time-badge">⏱ ${escapeHtml(it.time)}</span>
+          <div style="display:flex;align-items:center;gap:6px">
+            <span class="category-badge ${it.cat}">${escapeHtml(it.catName || 'Event')}</span>
+            <div class="item-actions">
+              <button class="icon-btn" onclick="openEditModal('${day.id}', '${it.id}')" title="Edit">✎</button>
+              <button class="icon-btn delete" onclick="deleteItem('${day.id}', '${it.id}')" title="Delete">✕</button>
+            </div>
+          </div>
+        </div>
+        <div class="item-title">
+          <span>${escapeHtml(it.title)}</span>
+        </div>
+        ${it.location ? `<div class="item-location">📍 ${escapeHtml(it.location)}</div>` : ''}
+        ${it.notes ? `<div class="item-desc">${escapeHtml(it.notes)}</div>` : ''}
+      </div>
+    `).join('');
+
+    container.innerHTML = `
+      <div class="day-card" id="screenshot-target">
+        <div class="day-header">
+          <div class="day-headline">
+            <h2>📅 ${day.dateStr}</h2>
+            <p>${escapeHtml(day.summary)}</p>
+          </div>
+          <span class="highlight-pill">${escapeHtml(day.badge)}</span>
+        </div>
+
+        <div class="timeline">
+          ${itemsHtml.length > 0 ? itemsHtml : '<div style="text-align:center;padding:20px;color:#94a3b8;font-size:0.8rem">No events planned for this day yet.</div>'}
+          <button class="add-event-dashed" onclick="openAddModal(${currentDayIndex})">
+            <span>+ Add Activity to ${day.shortDay} ${day.dayNum}</span>
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderSummaryView(container) {
+    let rowsHtml = tripData.map((d, idx) => `
+      <div class="summary-day-row" onclick="selectDay(${idx})">
+        <div class="row-date-badge">
+          <span class="day-name">${d.shortDay}</span>
+          <span class="day-val">${d.dayNum}</span>
+        </div>
+        <div class="row-details">
+          <div class="row-main-tag">
+            <span>${escapeHtml(d.badge)}</span>
+          </div>
+          <div class="row-items-preview">
+            ${d.items.map(it => it.title).join(' • ') || 'Free day'}
+          </div>
+        </div>
+        <div class="row-arrow">➔</div>
+      </div>
+    `).join('');
+
+    container.innerHTML = `
+      <div class="day-card">
+        <div class="day-header">
+          <div class="day-headline">
+            <h2>🗺️ Full Trip Overview</h2>
+            <p>Click any day to open its detailed schedule.</p>
+          </div>
+        </div>
+        <div class="summary-grid">
+          ${rowsHtml}
+        </div>
+      </div>
+    `;
+  }
+
+  function renderAll() {
+    renderTabs();
+    renderContent();
+  }
+
+  // Edit / Add Modal Handlers
+  function openAddModal(dayIdx = currentDayIndex) {
+    editTargetId = null;
+    document.getElementById('modal-title').innerText = "Add New Itinerary Entry";
+    document.getElementById('modal-day').value = dayIdx;
+    document.getElementById('modal-time').value = "";
+    document.getElementById('modal-category').value = "cat-visit";
+    document.getElementById('modal-activity').value = "";
+    document.getElementById('modal-location').value = "";
+    document.getElementById('modal-notes').value = "";
+    document.getElementById('event-modal').classList.add('open');
+  }
+
+  function openEditModal(dayId, itemId) {
+    const day = tripData.find(d => d.id === dayId);
+    if (!day) return;
+    const item = day.items.find(i => i.id === itemId);
+    if (!item) return;
+
+    editTargetId = { dayId, itemId };
+    document.getElementById('modal-title').innerText = "Edit Itinerary Entry";
+    document.getElementById('modal-day').value = tripData.indexOf(day);
+    document.getElementById('modal-time').value = item.time || "";
+    document.getElementById('modal-category').value = item.cat || "cat-visit";
+    document.getElementById('modal-activity').value = item.title || "";
+    document.getElementById('modal-location').value = item.location || "";
+    document.getElementById('modal-notes').value = item.notes || "";
+    document.getElementById('event-modal').classList.add('open');
+  }
+
+  function closeModal() {
+    document.getElementById('event-modal').classList.remove('open');
+    editTargetId = null;
+  }
+
+  function saveEvent() {
+    const dayIdx = parseInt(document.getElementById('modal-day').value, 10);
+    const time = document.getElementById('modal-time').value.trim() || "Flexible";
+    const cat = document.getElementById('modal-category').value;
+    const title = document.getElementById('modal-activity').value.trim();
+    const location = document.getElementById('modal-location').value.trim();
+    const notes = document.getElementById('modal-notes').value.trim();
+
+    if (!title) {
+      alert("Please enter an activity title.");
+      return;
+    }
+
+    const catSelect = document.getElementById('modal-category');
+    const catName = catSelect.options[catSelect.selectedIndex].text.replace(/[^\w\s]/gi, '').trim();
+
+    const targetDay = tripData[dayIdx];
+
+    if (editTargetId) {
+      const origDay = tripData.find(d => d.id === editTargetId.dayId);
+      const itemIndex = origDay.items.findIndex(i => i.id === editTargetId.itemId);
+      if (itemIndex !== -1) {
+        const updatedItem = {
+          ...origDay.items[itemIndex],
+          time,
+          cat,
+          catName,
+          title,
+          location,
+          notes
+        };
+
+        if (origDay === targetDay) {
+          origDay.items[itemIndex] = updatedItem;
+        } else {
+          origDay.items.splice(itemIndex, 1);
+          targetDay.items.push(updatedItem);
+        }
+      }
+    } else {
+      const newItem = {
+        id: "it-custom-" + Date.now(),
+        time,
+        cat,
+        catName,
+        title,
+        location,
+        notes
+      };
+      targetDay.items.push(newItem);
+    }
+
+    saveData();
+    closeModal();
+    currentDayIndex = dayIdx;
+    renderAll();
+  }
+
+  function deleteItem(dayId, itemId) {
+    if (confirm("Remove this entry from the itinerary?")) {
+      const day = tripData.find(d => d.id === dayId);
+      if (day) {
+        day.items = day.items.filter(i => i.id !== itemId);
+        saveData();
+        renderContent();
+      }
+    }
+  }
+
+  function takeSnapshot() {
+    alert("📸 Screenshot Ready:\nThe clean white card is now framed for your mobile screen! Take your screenshot now to share.");
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/[&<>'"]/g, 
+      tag => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        "'": '&#39;',
+        '"': '&quot;'
+      }[tag] || tag)
+    );
+  }
+
+  // Keyboard shortcut (Escape closes modal)
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // Init
+  loadData();
+  renderAll();
+</script>
+
+</body>
+</html>

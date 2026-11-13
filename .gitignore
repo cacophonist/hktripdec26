@@ -1,0 +1,6 @@
+# Private travel documents and attachments
+flights/
+hotel/
+.system_generated/
+scratch/
+*.py
