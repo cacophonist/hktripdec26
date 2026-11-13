@@ -1,6 +1,7 @@
 # Private travel documents and attachments
 flights/
 hotel/
+conversation/
 .system_generated/
 scratch/
 *.py

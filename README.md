@@ -1,8 +1,9 @@
 # HK_Dec26_Trip — Hong Kong Holiday (Dec 26 – Dec 31, 2026)
 
-This repository contains the interactive itinerary web app for the Hong Kong family trip.
+This repository contains the interactive itinerary web app, travel reservations, and full conversation archive for the Hong Kong family trip.
 
-🌐 **Live Itinerary:** [https://cacophonist.github.io/hktripdec26](https://cacophonist.github.io/hktripdec26)
+🌐 **Live Itinerary:** [https://cacophonist.github.io/hktripdec26](https://cacophonist.github.io/hktripdec26)  
+📜 **Conversation Transcript:** [CONVERSATION.md](CONVERSATION.md)
 
 ---
 
